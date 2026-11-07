@@ -1,0 +1,8 @@
+# 許可リスト方式。Dockerfileの COPY で使うファイルだけをビルドコンテキストに含める。
+# （Dockerfile自身と.dockerignoreは、指定しなくても常にコンテキストへ含まれる）
+# COPYするファイルを増やしたら、ここにも追加する。
+*
+!dnsmasq.conf
+!entrypoint.sh
+!notify_slack.sh
+!user_prompt_submit_timestamp.sh

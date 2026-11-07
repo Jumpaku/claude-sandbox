@@ -7,6 +7,7 @@ Claude Codeを隔離して実行するためのコンテナ（イメージ）。
 | ファイル | 内容 |
 | --- | --- |
 | `docker/Dockerfile` | debian slimベースのイメージ定義。`iptables`/`ipset`/`dnsmasq`/`curl`/`jq`/`git`とClaude Codeを導入し、一般ユーザー`claude_user`を作成する |
+| `docker/.dockerignore` | ビルドコンテキストの除外設定。`Dockerfile`の`COPY`で使うファイルだけを含める許可リスト方式。`COPY`するファイルを増やしたら、ここにも追加する |
 | `docker/entrypoint.sh` | コンテナのエントリポイント。必須の環境変数を確認し、`dnsmasq`と`iptables`/`ipset`で外部通信の許可リストを構築して待機する |
 | `docker/dnsmasq.conf` | DNSプロキシの設定。許可した接続先（`ALLOWED_ENDPOINTS`から生成される設定）の解決済みIPを`ipset`へ追加し、`ALLOWED_DOCKER_DNS`のホストをDocker組み込みDNSで解決する |
 | `docker/notify_slack.sh` | Stop/StopFailure/Notification/PermissionRequestフックから呼ばれ、Slackへ通知する |
