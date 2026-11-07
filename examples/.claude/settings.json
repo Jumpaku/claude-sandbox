@@ -2,10 +2,12 @@
   "permissions": {
     "defaultMode": "default",
     "deny": [
+      "Bash(docker *)",
       "WebSearch",
       "WebFetch"
     ]
   },
+  "language": "japanese",
   "tui": "fullscreen",
   "theme": "auto",
   "preferredNotifChannel": "auto",

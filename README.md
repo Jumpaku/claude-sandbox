@@ -62,10 +62,9 @@ docker exec -it -u claude_user claude-sandbox claude
 | `~/.claude.json` | ファイル | Claude Codeのグローバル状態の永続化 | rw |
 | `~/.claude/settings.json` | ファイル | ユーザー設定（権限、フック、テーマなど）の差し替え | ro推奨 |
 | `~/.claude/CLAUDE.md` | ファイル | 全プロジェクト共通の指示の差し替え | ro推奨 |
-| `~/workspace/.claude/settings.local.json` | ファイル | プロジェクトのローカル設定の差し替え | ro推奨 |
 
-- 設定系の3ファイルをroでマウントすると、コンテナ内のclaudeが自身の設定や指示を書き換えられなくなる。
-- `~/.claude`と、その配下の`settings.json`・`CLAUDE.md`は両方マウントできる。配下のファイルが優先される（`~/workspace`と`settings.local.json`も同様）。
+- 設定系の2ファイルをroでマウントすると、コンテナ内のclaudeが自身の設定や指示を書き換えられなくなる。
+- `~/.claude`と、その配下の`settings.json`・`CLAUDE.md`は両方マウントできる。配下のファイルが優先される。
 - `~/.claude`はイメージ内で`claude_user`所有のディレクトリとして用意済み。マウント元のホスト側ディレクトリは、`claude_user`（uid 1000）が書き込める必要がある。
 - `~/.claude.json`はファイルとしてマウントするため、ホスト側に事前にファイルを用意する。マウント元が無いとdockerがディレクトリとして作成してしまう。初期値には、このリポジトリの`examples/.claude.json`（オンボーディングと、`~/workspace`の信頼ダイアログをスキップする設定）を使える。
 
@@ -105,7 +104,6 @@ docker run -d --rm ... jumpaku/claude-sandbox:latest <コマンド> <引数>
 | `~/.claude.json` | `examples/agents/.claude.json`（無ければ`examples/.claude.json`をコピーして作る） |
 | `~/.claude/settings.json` | `examples/.claude/settings.json`（ro） |
 | `~/.claude/CLAUDE.md` | `examples/.claude/CLAUDE.md`（ro） |
-| `~/workspace/.claude/settings.local.json` | `examples/.claude/settings.local.json`（ro） |
 
 `examples/agents/`と`examples/.env.sandbox`は、`.gitignore`済み。
 
@@ -123,7 +121,6 @@ docker run -d --rm ... jumpaku/claude-sandbox:latest <コマンド> <引数>
 | `docker/dnsmasq.conf` | DNSプロキシの設定。許可した接続先（`ALLOWED_ENDPOINTS`から生成される設定）の解決済みIPを`ipset`へ追加し、`ALLOWED_DOCKER_DNS`のホストをDocker組み込みDNSで解決する |
 | `examples/sandbox.sh` | 起動スクリプトの例 |
 | `examples/.claude/settings.json` | `examples/sandbox.sh`が`~/.claude/settings.json`としてroでマウントする設定 |
-| `examples/.claude/settings.local.json` | `examples/sandbox.sh`が`~/workspace/.claude/settings.local.json`としてroでマウントする設定 |
 | `examples/.claude/CLAUDE.md` | `examples/sandbox.sh`が`~/.claude/CLAUDE.md`としてroでマウントする指示 |
 | `examples/.claude.json` | `~/.claude.json`の初期値 |
 

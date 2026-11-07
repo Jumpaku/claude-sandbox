@@ -36,13 +36,10 @@ docker run -d --rm \
     --cap-add SETUID \
     --cap-add SETGID \
     --env-file "${ENV_FILE}" \
-    -e ALLOWED_ENDPOINTS \
-    -e ALLOWED_DOCKER_DNS \
     -v "${WORKSPACE_DIR}:/home/claude_user/workspace:rw" \
     -v "${AGENTS_DIR}/.claude.json:/home/claude_user/.claude.json:rw" \
     -v "${AGENTS_DIR}/.claude:/home/claude_user/.claude:rw" \
     -v "${EXAMPLES_DIR}/.claude/settings.json:/home/claude_user/.claude/settings.json:ro" \
-    -v "${EXAMPLES_DIR}/.claude/settings.local.json:/home/claude_user/workspace/.claude/settings.local.json:ro" \
     -v "${EXAMPLES_DIR}/.claude/CLAUDE.md:/home/claude_user/.claude/CLAUDE.md:ro" \
     "${IMAGE_NAME}"
 
