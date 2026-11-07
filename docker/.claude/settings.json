@@ -1,0 +1,62 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "deny": ["WebSearch", "WebFetch"]
+  },
+  "tui": "fullscreen",
+  "theme": "auto",
+  "preferredNotifChannel": "auto",
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x /usr/local/bin/user_prompt_submit_timestamp.sh ]; then /usr/local/bin/user_prompt_submit_timestamp.sh; fi"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x /usr/local/bin/notify_slack.sh ]; then /usr/local/bin/notify_slack.sh; fi"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x /usr/local/bin/notify_slack.sh ]; then /usr/local/bin/notify_slack.sh; fi"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x /usr/local/bin/notify_slack.sh ]; then /usr/local/bin/notify_slack.sh; fi"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x /usr/local/bin/notify_slack.sh ]; then /usr/local/bin/notify_slack.sh; fi"
+          }
+        ]
+      }
+    ]
+  }
+}

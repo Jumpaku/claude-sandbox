@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(docker *)",
+      "WebSearch",
+      "WebFetch"
+    ]
+  },
+  "language": "japanese"
+}

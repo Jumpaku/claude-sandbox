@@ -1,0 +1,15 @@
+{
+  "hasCompletedOnboarding": true,
+  "hasTrustDialogAccepted": true,
+  "projects": {
+    "/home/claude_user/workspace": {
+      "hasTrustDialogAccepted": true,
+      "hasCompletedProjectOnboarding": true,
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": []
+    }
+  }
+}
