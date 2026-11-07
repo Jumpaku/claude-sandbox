@@ -9,8 +9,7 @@ DOCKER_DIR="${PWD}/docker"
 # claudeの作業対象としてマウントするフォルダ
 WORKSPACE_DIR="${PWD}"
 
-IMAGE_NAME=local-sandbox
-IMAGE_TAG=$(date +%s)
+IMAGE_NAME=jumpaku/claude-sandbox:slack
 CONTAINER_NAME=local-sandbox
 
 # CLAUDE_CODE_OAUTH_TOKEN（必須）、SLACK_BOT_TOKEN/SLACK_CHANNEL/SLACK_MEMBER（任意）を記載する
@@ -37,8 +36,6 @@ if [ ! -f "${AGENTS_DIR}/.claude.json" ]; then
     cp "${DOCKER_DIR}/.claude.json" "${AGENTS_DIR}/.claude.json"
 fi
 
-docker build -t "${IMAGE_NAME}:${IMAGE_TAG}" -t "${IMAGE_NAME}:latest" "${DOCKER_DIR}"
-
 # 前回のコンテナが残っていれば削除する
 docker rm -f "${CONTAINER_NAME}" 2>/dev/null || true
 
@@ -61,6 +58,6 @@ docker run -d --rm \
     -v "${DOCKER_DIR}/.claude/settings.json:/home/claude_user/.claude/settings.json:ro" \
     -v "${DOCKER_DIR}/.claude/settings.local.json:/home/claude_user/workspace/.claude/settings.local.json:ro" \
     -v "${DOCKER_DIR}/.claude/CLAUDE.md:/home/claude_user/.claude/CLAUDE.md:ro" \
-    "${IMAGE_NAME}:${IMAGE_TAG}"
+    "${IMAGE_NAME}"
 
 docker exec -it -u claude_user "${CONTAINER_NAME}" claude --dangerously-skip-permissions
