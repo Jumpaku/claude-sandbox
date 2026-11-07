@@ -3,15 +3,8 @@
 set -eux
 
 # Dockerコンテナのエントリポイントとして、root権限で起動されることを前提とする。
-# ネットワークの許可リストを設定してからsleepし続ける。
+# ネットワークの許可リストを設定してから、引数のコマンド（CMD。既定はsleep infinity）を実行する。
 # claude自体は`docker exec -u claude_user`で個別に起動する（sandbox.shが実行する）。
-
-
-# 必須の環境変数が未設定ならエラー終了する
-if [ -z "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
-  echo "entrypoint.sh: CLAUDE_CODE_OAUTH_TOKEN is not set" >&2
-  exit 1
-fi
 
 
 # 任意の環境変数の形式が不正ならエラー終了する。
@@ -120,5 +113,6 @@ iptables -P FORWARD DROP
 dnsmasq -k -C /etc/dnsmasq.conf &
 
 
-# ネットワーク設定完了後はコンテナを起動状態に保ち、docker execでclaudeを起動できるようにする
-exec sleep infinity
+# ネットワーク設定完了後は、引数のコマンド（CMD）をroot権限のままexecで実行する。
+# 既定のCMDはsleep infinityで、コンテナを起動状態に保ち、docker execでclaudeを起動できるようにする。
+exec "$@"

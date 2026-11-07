@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "deny": [
+      "WebSearch",
+      "WebFetch"
+    ]
+  },
+  "tui": "fullscreen",
+  "theme": "auto",
+  "preferredNotifChannel": "auto",
+  "skipDangerousModePermissionPrompt": true
+}

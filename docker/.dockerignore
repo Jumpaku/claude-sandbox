@@ -4,5 +4,3 @@
 *
 !dnsmasq.conf
 !entrypoint.sh
-!notify_slack.sh
-!user_prompt_submit_timestamp.sh
