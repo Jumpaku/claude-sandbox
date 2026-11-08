@@ -14,8 +14,8 @@ EXAMPLES_DIR="${PWD}/examples/claude-sandbox-slack-notify"
 IMAGE_NAME=local-claude-sandbox-slack-notify:latest
 CONTAINER_NAME=local-sandbox-slack-notify
 
-# CLAUDE_CODE_OAUTH_TOKEN（任意）、SLACK_BOT_TOKEN・SLACK_CHANNEL・SLACK_MEMBER、
-# ALLOWED_ENDPOINTS（slack.com:443を含める）などの環境変数を記載する
+# CLAUDE_CODE_OAUTH_TOKEN（任意）、SLACK_BOT_TOKEN・SLACK_CHANNEL・SLACK_MEMBER
+# などの環境変数を記載する（ALLOWED_ENDPOINTSは下で渡すので記載不要）
 ENV_FILE="${EXAMPLES_DIR}/.env.sandbox"
 # ~/.claude, ~/.claude.jsonの実体を置くディレクトリ
 AGENTS_DIR="${EXAMPLES_DIR}/agents"
@@ -43,6 +43,7 @@ docker run -d --rm \
     --cap-add SETUID \
     --cap-add SETGID \
     --env-file "${ENV_FILE}" \
+    -e ALLOWED_ENDPOINTS="slack.com:443" \
     -v "${WORKSPACE_DIR}:/home/claude_user/workspace:rw" \
     -v "${AGENTS_DIR}/.claude.json:/home/claude_user/.claude.json:rw" \
     -v "${AGENTS_DIR}/.claude:/home/claude_user/.claude:rw" \
