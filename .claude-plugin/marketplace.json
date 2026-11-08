@@ -1,0 +1,13 @@
+{
+  "name": "claude-sandbox",
+  "owner": {
+    "name": "Jumpaku"
+  },
+  "plugins": [
+    {
+      "name": "slack-notify",
+      "source": "./plugins/slack-notify",
+      "description": "claude-sandbox用。ターン終了・APIエラー・許可待ち・入力待ちをSlackのスレッドへ通知する"
+    }
+  ]
+}

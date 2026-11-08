@@ -1,0 +1,54 @@
+{
+    "hooks": {
+        "UserPromptSubmit": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "sh \"${CLAUDE_PLUGIN_ROOT}/scripts/user_prompt_submit_timestamp.sh\""
+                    }
+                ]
+            }
+        ],
+        "Stop": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "sh \"${CLAUDE_PLUGIN_ROOT}/scripts/slack_notify.sh\""
+                    }
+                ]
+            }
+        ],
+        "StopFailure": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "sh \"${CLAUDE_PLUGIN_ROOT}/scripts/slack_notify.sh\""
+                    }
+                ]
+            }
+        ],
+        "Notification": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "sh \"${CLAUDE_PLUGIN_ROOT}/scripts/slack_notify.sh\""
+                    }
+                ]
+            }
+        ],
+        "PermissionRequest": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "sh \"${CLAUDE_PLUGIN_ROOT}/scripts/slack_notify.sh\""
+                    }
+                ]
+            }
+        ]
+    }
+}

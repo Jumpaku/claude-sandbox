@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# sh examples/sandbox.sh
+# sh examples/claude-sandbox/sandbox.sh
 
 set -eux
 
@@ -8,7 +8,7 @@ set -eux
 # claudeの作業対象としてマウントするフォルダ
 WORKSPACE_DIR="${PWD}"
 # このスクリプトと、その設定ファイル（.env.sandbox、.claude.json、.claude/）を置くディレクトリ
-EXAMPLES_DIR="${PWD}/examples"
+EXAMPLES_DIR="${PWD}/examples/claude-sandbox"
 
 IMAGE_NAME=jumpaku/claude-sandbox:latest
 CONTAINER_NAME=local-sandbox

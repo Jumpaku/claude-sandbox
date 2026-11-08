@@ -2,6 +2,7 @@ FROM debian:trixie-20261104-slim AS claude-sandbox
 
 # iptables/ipset/dnsmasq: entrypoint.shが構築する外部通信の許可リスト方式のための一式
 # curl: Claude Codeのネイティブインストーラ取得用
+# jq: Claude CodeのJSON（フックの入力、トランスクリプト、設定ファイル等）を扱う用
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         iptables \
@@ -9,6 +10,7 @@ RUN apt-get update \
         dnsmasq \
         ca-certificates \
         curl \
+        jq \
     && rm -rf /var/lib/apt/lists/*
 
 # claude用のユーザー作成
