@@ -1,4 +1,4 @@
-FROM debian:trixie-20261104-slim AS claude-sandbox
+FROM debian:forky-20261104-slim AS claude-sandbox
 
 # iptables/ipset/dnsmasq: entrypoint.shが構築する外部通信の許可リスト方式のための一式
 # curl: Claude Codeのネイティブインストーラ取得用
